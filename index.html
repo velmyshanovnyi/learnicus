@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Audio Element Sample</title>
+    <!-- Uncomment the following meta tag if you have issues rendering this page on an intranet site. -->    
+    <!--  <meta http-equiv="X-UA-Compatible" content="IE=9"/> --> 
+
+
+<script>
+var music = document.getElementById("music");
+music.innerHTML = '<embed src="music.mp3" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>';
+</script>
+</head>
+<body>
+
+
+<!--// 
+https://www.freesound.org/people/alphahog/sounds/179132/
+http://habrahabr.ru/post/148202/
+http://habrahabr.ru/post/149518/
+
+
+<audio controls  autoload autoplay > 
+  <source src="sound.mp3" type="audio/mp3" preload="auto" >
+  <source src="sound.ogg" type="audio/ogg" preload="auto" >
+  HTML5 audio not supported
+</audio>
+//-->
+
+<br/><br/>
+999999999999999<br/>
+<br/>
+
+<audio controls  preload autoload autoplay id="player" >
+  <source src="sound.ogg" type="audio/ogg" preload="auto" >
+  Ваш браузер не пожжерживает тег audio!
+</audio>
+<div>
+    <button onclick="document.getElementById('player').play()"     >Грати</button>
+    <button onclick="document.getElementById('player').pause()"    >Пауза</button>
+    <button onclick="document.getElementById('player').mute()"    >muted</button><br/>
+    <button onclick="document.getElementById('player').volume+=0.1">Гучність +</button>
+    <button onclick="document.getElementById('player').volume-=0.1">Гучність -</button>
+</div> 
+
+
+
+
+</body>
+</html>
