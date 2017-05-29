@@ -1,0 +1,88 @@
+﻿
+// API callback
+learnicusJsonEvents({
+"version":"1.0",
+"encoding":"UTF-8",
+"feed":
+  {
+    "xmlns":"http://www.w3.org/2005/Atom",
+    "xmlns$openSearch":"http://a9.com/-/spec/opensearchrss/1.0/",
+    "xmlns$gsx":"http://schemas.google.com/spreadsheets/2006/extended",
+    "id":
+        {
+          "$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values"
+        },
+    "updated":
+      {"$t":"2013-04-25T18:33:44.515Z"},
+    "category":
+      [
+        {
+          "scheme":"http://schemas.google.com/spreadsheets/2006",
+          "term":"http://schemas.google.com/spreadsheets/2006#list"
+        }
+      ],
+    "title":
+    {
+      "type":"text",
+      "$t":"DB.en2uk.number"
+    },
+    "link":
+    [
+      {
+        "rel":"alternate",
+        "type":"text/html",
+        "href":"https://spreadsheets.google.com/pub?key\u003d0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc"
+      },
+      {
+        "rel":"http://schemas.google.com/g/2005#feed",
+        "type":"application/atom+xml",
+        "href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values"
+      },
+      {
+        "rel":"self",
+        "type":"application/atom+xml",
+        "href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt\u003djson-in-script"
+      }
+      ],
+    "author":
+    [
+      {
+        "name":{"$t":"velmyshanovnyi"},
+        "email":{"$t":"velmyshanovnyi@gmail.com"}
+      }
+    ],
+    "openSearch$totalResults":{"$t":"11"},
+    "openSearch$startIndex":{"$t":"1"},
+    
+    "entry":
+    [
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cokwr"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: zero, lang1trans: ˈbɪn, lang1mp3: 0, lang2word: нуль, lang2trans: ˈbɪn, lang2mp3: 0"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cokwr"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"zero"},"gsx$lang1trans":{"$t":"ˈbɪn"},"gsx$lang1mp3":{"$t":"0"},"gsx$lang2word":{"$t":"нуль"},"gsx$lang2trans":{"$t":"ˈbɪn"},"gsx$lang2mp3":{"$t":"0"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cpzh4"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: one, lang1trans: ˈbət, lang1mp3: 1, lang2word: один, lang2trans: ˈbət, lang2mp3: 1"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cpzh4"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"one"},"gsx$lang1trans":{"$t":"ˈbət"},"gsx$lang1mp3":{"$t":"1"},"gsx$lang2word":{"$t":"один"},"gsx$lang2trans":{"$t":"ˈbət"},"gsx$lang2mp3":{"$t":"1"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cre1l"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: 2, lang1trans: ˈbaɪ, lang1mp3: 2, lang2word: два, lang2trans: ˈbaɪ, lang2mp3: 2"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cre1l"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"2"},"gsx$lang1trans":{"$t":"ˈbaɪ"},"gsx$lang1mp3":{"$t":"2"},"gsx$lang2word":{"$t":"два"},"gsx$lang2trans":{"$t":"ˈbaɪ"},"gsx$lang2mp3":{"$t":"2"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/chk2m"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: 3, lang1trans: ˈkɔld, lang1mp3: 3, lang2word: три, lang2trans: ˈkɔld, lang2mp3: 3"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/chk2m"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"3"},"gsx$lang1trans":{"$t":"ˈkɔld"},"gsx$lang1mp3":{"$t":"3"},"gsx$lang2word":{"$t":"три"},"gsx$lang2trans":{"$t":"ˈkɔld"},"gsx$lang2mp3":{"$t":"3"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/ciyn3"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: 4, lang1trans: kən, lang1mp3: 4, lang2word: чотири, lang2trans: kən, lang2mp3: 4"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/ciyn3"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"4"},"gsx$lang1trans":{"$t":"kən"},"gsx$lang1mp3":{"$t":"4"},"gsx$lang2word":{"$t":"чотири"},"gsx$lang2trans":{"$t":"kən"},"gsx$lang2mp3":{"$t":"4"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/ckd7g"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: five, lang1trans: kəd, lang1mp3: 5, lang2word: пять, lang2trans: kəd, lang2mp3: 5"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/ckd7g"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"five"},"gsx$lang1trans":{"$t":"kəd"},"gsx$lang1mp3":{"$t":"5"},"gsx$lang2word":{"$t":"пять"},"gsx$lang2trans":{"$t":"kəd"},"gsx$lang2mp3":{"$t":"5"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/clrrx"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: 6, lang1trans: ˈdɪd, lang1mp3: 6, lang2word: шість, lang2trans: ˈdɪd, lang2mp3: 6"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/clrrx"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"6"},"gsx$lang1trans":{"$t":"ˈdɪd"},"gsx$lang1mp3":{"$t":"6"},"gsx$lang2word":{"$t":"шість"},"gsx$lang2trans":{"$t":"ˈdɪd"},"gsx$lang2mp3":{"$t":"6"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cyevm"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: 7, lang1trans: ˈduː, lang1mp3: 7, lang2word: сім, lang2trans: ˈduː, lang2mp3: 7"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cyevm"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"7"},"gsx$lang1trans":{"$t":"ˈduː"},"gsx$lang1mp3":{"$t":"7"},"gsx$lang2word":{"$t":"сім"},"gsx$lang2trans":{"$t":"ˈduː"},"gsx$lang2mp3":{"$t":"7"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cztg3"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: 8, lang1trans: ˈbɪn, lang1mp3: 8, lang2word: вісім, lang2trans: ˈbɪn, lang2mp3: 8"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/cztg3"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"8"},"gsx$lang1trans":{"$t":"ˈbɪn"},"gsx$lang1mp3":{"$t":"8"},"gsx$lang2word":{"$t":"вісім"},"gsx$lang2trans":{"$t":"ˈbɪn"},"gsx$lang2mp3":{"$t":"8"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/d180g"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: 9, lang1trans: ˈbət, lang1mp3: 9, lang2word: девять, lang2trans: ˈbət, lang2mp3: 9"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/d180g"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"9"},"gsx$lang1trans":{"$t":"ˈbət"},"gsx$lang1mp3":{"$t":"9"},"gsx$lang2word":{"$t":"девять"},"gsx$lang2trans":{"$t":"ˈbət"},"gsx$lang2mp3":{"$t":"9"}},
+      {"id":{"$t":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/d2mkx"},"updated":{"$t":"2013-04-25T18:33:44.515Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"1"},"content":{"type":"text","$t":"lang1word: ten, lang1trans: ˈbaɪ, lang1mp3: 10, lang2word: десять, lang2trans: ˈbaɪ, lang2mp3: 10"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values/d2mkx"}],"gsx$dictid":{"$t":"1"},"gsx$lang1word":{"$t":"ten"},"gsx$lang1trans":{"$t":"ˈbaɪ"},"gsx$lang1mp3":{"$t":"10"},"gsx$lang2word":{"$t":"десять"},"gsx$lang2trans":{"$t":"ˈbaɪ"},"gsx$lang2mp3":{"$t":"10"}}
+    ]
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
