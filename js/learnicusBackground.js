@@ -36,12 +36,8 @@ chrome.extension.onMessage.addListener(
 */
 
 
-
-
-
-
 // ########## BUZZ CHECK ##########
-/*
+
 // API --  http://buzz.jaysalvat.com/documentation
 console.log('BUZZ|Check browser');  // Check if the HTML5 audio tag is supported by the browser.
 if (!buzz.isSupported()) {
@@ -63,23 +59,22 @@ console.log('BUZZ|Check AAC Format'); // Check if the AAC audio format is suppor
 if (!buzz.isAACSupported()) {
   alert("Your browser doesn't support AAC Format.");
 }
-*/
+
 // ########## BUZZ CHECK END ##########
 
 
 
 
 //########### showNotification - START ##########
-function showNotification() { // v0.1.5  оригнал: нижче пробував $(document).ready(function ()  - то воно глючить, а так (v0.1.5) за 1 цикл починає вже нормально працювати!
+function showNotification() { // v0.1.5 оригнал: нижче пробував $(document).ready(function ()  - то воно глючить, а так (v0.1.5) за 1 цикл починає вже нормально працювати!
 // $(document).ready(function show() {
-
-
 
 // RANDOM START
 // использование Math.round() даст неравномерное распределение!
     var randomIdMax = localStorage.ls_current_maxId;                            // v0.2.30
     var randomId = Math.floor(Math.random() * randomIdMax);
     localStorage.ls_current_randomId = randomId;                                // v0.2.30
+    console.log('RANDOM:');
     console.log('|'+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
 // RANDOM END
 
@@ -90,11 +85,13 @@ function showNotification() { // v0.1.5  оригнал: нижче пробув
   //var learnicusSoundName  = learnicusSoundName.toLowerCase();                 // на 0.2.23 почало глючити
   var learnicusSoundName1 = localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1mp3_'+ randomId);     // на 0.2.30 
   var learnicusSoundName2 = localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2mp3_'+ randomId);     // на 0.2.30 
-/*
-  // console.log('BUZZ|learnicusSoundName  ='+ learnicusSoundName); 
-  // var learnicusSoundName = localStorage.getItem('lsFileNameId_'+ randomId);
-  //var learnicusSoundUrl  = chrome.extension.getURL('/offline/en/'+ learnicusSoundName +'.mp3');                       // v0.2.4
-  var learnicusSoundUrl  = chrome.extension.getURL('/offline/'+ localStorage.learnicusSound1 +'/'+ learnicusSoundName +'.mp3'); // v0.2.5
+
+  
+  
+  console.log('BUZZ|learnicusSoundName  ='+ learnicusSoundName); 
+  var learnicusSoundName = localStorage.getItem('lsFileNameId_'+ randomId);
+  var learnicusSoundUrl  = chrome.extension.getURL('/offline/en/'+ learnicusSoundName +'.mp3');                       // v0.2.4
+  //var learnicusSoundUrl  = chrome.extension.getURL('/offline/'+  +'/'+ learnicusSoundName +'.mp3'); // v0.2.5
   //console.log('BUZZ|mySoundUrl  ='+ mySoundUrl);
   var learnicusSound = new buzz.sound(learnicusSoundUrl);
   //console.log('BUZZ|mySound ='+ mySound);
@@ -104,7 +101,7 @@ function showNotification() { // v0.1.5  оригнал: нижче пробув
   learnicusSound.play();
   //console.log('BUZZ|mySound.play();');
   // ########## BUZZ END ######
-*/
+
 
 
 if (localStorage.learnicusSoundActivated1 == 'true') {  
@@ -186,12 +183,9 @@ learnicusSound2.play();                         //v0.2.5
 
 
 
-
-
-
-
 // ########## NOTIFICATION ##########
-  var notification = window.webkitNotifications.createNotification(
+//var notification = window.webkitNotifications.createNotification(           // 2013 року 
+  var notification = webkitNotifications.createNotification(                  // 2017 року // https://coderwall.com/p/iibijq/chrome-notification
     // порада робити ТАК: http://stackoverflow.com/questions/13209799/icon-not-showing-up-in-chrome-extension-desktop-notification
     chrome.extension.getURL('icons/icon32.png'),   // картинка;
     localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1word_'+ randomId) +' ['+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1trans_'+ randomId) +']', // 0.2.30 заголовок (СЛОВО)
@@ -203,7 +197,9 @@ learnicusSound2.play();                         //v0.2.5
   learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // 0.2.31
   localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // 0.2.31 кількість переглянутих слів (нове значення).
 
-  setTimeout(function(){notification.cancel();}, localStorage.ls_NotificationVisible);  // 10000 // додав функцію вимикання по таймауту. вже в налаштуваннях!
+  setTimeout(function(){
+    notification.cancel();
+  }, localStorage.ls_NotificationVisible);  // 10000 // додав функцію вимикання по таймауту. вже в налаштуваннях!
 };
 //########### showNotification - END ############
 

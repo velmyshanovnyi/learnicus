@@ -7,99 +7,101 @@
   field.
 */
 
-//document.write('<scr'+'ipt src="'+ chrome.extension.getURL('js/jquery.min.js') +'" async type="text/javascript" alt="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></scr'+'ipt>'); // в цьому файлі поки що не юзається jQuery
-//document.write('<scr'+'ipt src="'+ chrome.extension.getURL('js/learnicusGoogleAnalytics.js') +'" async type="text/javascript" ></scr'+'ipt>');
-
-
 // РОЗПИСАТИ (дізнатись) ЗА ЩО ВІДПОВІДАЮТЬ ЦІ ПАРАМЕТРИ
-// c1g - ghost ???
-// c2g - gSound1|gSound2
-// c1oo - options ???
-// c2oo - learnicusSoundOptions1|learnicusSoundOptions2
-// c1on - learnicusFrequency|learnicusNotificationVisible|learnicusDictionaryID ???
-// c2on - 
-// c1ln - ls_frequency|ls_NotificationVisible|ls_DictionaryID
-// c2ln - 
-// c1oa - isActivated
-// c1la - isActivated
-// c2la - 
-// c2a - 
-// c2d - 
+// c1g - ghost ??? = c101
+// c2g - gSound1|gSound2 = c201
+// c1oo - options ??? 	= c102																// C=checkbox ID=1 Option On
+// c2oo - learnicusSoundOptions1|learnicusSoundOptions2		// =c202							// C=checkbox ID=2 Option On
+// c1on - learnicusFrequency|learnicusNotificationVisible|learnicusDictionaryID ???	 // =c103
+// c2on -  // =c203
+// c1ln - ls_frequency|ls_NotificationVisible|ls_DictionaryID // =c105
+// c2ln -  // c204
+// c1oa - isActivated // c104
+// c1la - isActivated // c106
+// c2la - // c205
+// c2a -  // c206
+// c2d -  // c207
+// КОСТИЛЬ: (щоб побороти помилку //Uncaught TypeError: Cannot set property 'checked' of undefined//) :
 
 
-function learnicusOptionsCheck1 (c1g, c1oo, c1on, c1oa, c1ln, c1la) {
+
+//УВАГА! ВСЕ ПРОСТО! function learnicusOptionsCheck1 з приведеними параметрами, використовується для пакетної обробки "learnicusOptionsCheck1", що йдуть через 20 рядків нижче! 
+function learnicusOptionsCheck1 (c101, c102, c103, c104, c105, c106){
   // для деактивації (засірення і блокування контенту/параметрів при ненатиснутому чекбоксі)
-  function ghost(isDeactivated)  {
-    window[c1oo].style.color                                 = isDeactivated ? 'graytext' : 'black';   // The label color. Назви коьорів для "засіреня"
-    window[c1oo].learnicusFrequency.disabled                 = isDeactivated;                          // The control manipulability.
-    window[c1oo].learnicusNotificationVisible.disabled       = isDeactivated;                          // The control manipulability. //v0.2.6
-    window[c1oo].learnicusDictionaryOptions.disabled         = isDeactivated;
-    window[c1oo].learnicusDictionaryID.disabled              = isDeactivated;
+  function ghost(isDeactivated) {
+    window[c102].style.color                                 = isDeactivated ? 'graytext' : 'black';   // The label color. Назви коьорів для "засіреня"
+    window[c102].learnicusFrequency.disabled                 = isDeactivated;                          // The control manipulability.
+    window[c102].learnicusNotificationVisible.disabled       = isDeactivated;                          // The control manipulability. //v0.2.6
+    window[c102].learnicusDictionaryOptions.disabled         = isDeactivated;
+    window[c102].learnicusDictionaryID.disabled              = isDeactivated;
   };
 
-  window.addEventListener('load', function() {                              // Initialize the option controls.
-    window[c1oo][c1oa].checked    = JSON.parse(localStorage.getItem(c1la)); // The display activation.
-    window[c1oo][c1on].value       = localStorage.getItem(c1ln);             // The display frequency, in minutes.
-    if (!window[c1oo][c1oa].checked) { ghost(true); }                       // Set the display activation and frequency.   // активація відображення і показу
-    window[c1oo][c1oa].onchange   = function() {
-      localStorage.setItem(c1la, window[c1oo][c1oa].checked);
-      ghost(!window[c1oo][c1oa].checked);
+  window.addEventListener('load', function() {                               // Initialize the option controls.
+    window[c102][c104].checked     = JSON.parse(localStorage.getItem(c106)); // The display activation.
+    window[c102][c103].value       = localStorage.getItem(c105);             // The display frequency, in minutes.
+    if (!window[c102][c104].checked){ghost(true);}                           // Set the display activation and frequency.   // активація відображення і показу
+    window[c102][c104].onchange    = function() {
+      localStorage.setItem(c106, window[c102][c104].checked);
+      ghost(!window[c102][c104].checked);
     };
-   window[c1oo][c1on].onchange    = function() {
-      localStorage.setItem(c1ln, window[c1oo][c1on].value);
+   window[c102][c103].onchange    = function() {
+      localStorage.setItem(c105, window[c102][c103].value);
     };
   });
 };
 
-learnicusOptionsCheck1 ('ghost','options','learnicusFrequency',           'isActivated',  'ls_frequency',           'isActivated');
-learnicusOptionsCheck1 ('ghost','options','learnicusNotificationVisible', 'isActivated',  'ls_NotificationVisible', 'isActivated');
-learnicusOptionsCheck1 ('ghost','options','learnicusDictionaryID',        'isActivated',  'ls_DictionaryID',        'isActivated');
+// визначення параметрів (c101,    c102,    c103,                           c104,         c105,                   c106)
+learnicusOptionsCheck1   ('ghost','options','learnicusFrequency',          'isActivated','ls_frequency',          'isActivated');
+learnicusOptionsCheck1   ('ghost','options','learnicusNotificationVisible','isActivated','ls_NotificationVisible','isActivated');
+learnicusOptionsCheck1   ('ghost','options','learnicusDictionaryID',       'isActivated','ls_DictionaryID',       'isActivated');
 
 
 
 
-function learnicusOptionsCheck2 (c2g, c2oo, c2on, c2ln, c2la, c2a, c2d ){
-  function gSound1(c2d) {
-    window[c2oo].style.color      = c2d ? 'graytext' : 'black';            // The label color. Назви коьорів для "засіреня"
-    window[c2oo][c2on].disabled   = c2d;                                   // The control manipulability.
-    //document.getElementsByName('learnicusSoundOptions1')[c2on].disabled     = c2d;
+function learnicusOptionsCheck2 (c201, c202, c203, c204, c205, c206, c207 ){
+  function gSound1(c207) {
+    window[c202].style.color       = c207 ? 'graytext' : 'black';             // The label color. Назви коьорів для "засіреня"
+    window[c202][c203].disabled    = c207;                                    // The control manipulability.
+    //document.getElementsByName('learnicusSoundOptions1')[c203].disabled     // = c207;
   };
-  window.addEventListener('load', function() {                               // Initialize the option controls.
-    window[c2oo][c2a].checked     = JSON.parse(localStorage.getItem(c2la));  // The display activation.
-    window[c2oo][c2on].value      = localStorage.getItem(c2ln);              // The display Sound1 value.
-    if (!window[c2oo][c2a].checked) { gSound1(true); }                       // Set the display Sound1 value.   // активація відображення і показу
-    window[c2oo][c2a].onchange    = function() {
-      localStorage.setItem(c2la, window[c2oo][c2a].checked);
-      gSound1(!window[c2oo][c2a].checked);
+  window.addEventListener('load',    function() {                             // Initialize the option controls.
+    window[c202][c206].checked     = JSON.parse(localStorage.getItem(c205));  // The display activation.
+    window[c202][c203].value       = localStorage.getItem(c204);              // The display Sound1 value.
+    if (!window[c202][c206].checked) {gSound1(true);}                         // Set the display Sound1 value.   // активація відображення і показу
+    window[c202][c206].onchange    = function() {
+      localStorage.setItem(c205, window[c202][c206].checked);
+      gSound1(!window[c202][c206].checked);
     };
-    window[c2oo][c2on].onchange   = function() {
-      localStorage.setItem(c2ln, window[c2oo][c2on].value);
+    window[c202][c203].onchange    = function() {
+      localStorage.setItem(c204, window[c202][c203].value);
     };
   });
                     /*
-                    var options = c2oo;
-                    function gSound1(c2d) {
-                      learnicusSoundOptions1.style.color        = c2d ? 'graytext' : 'black';            // The label color. Назви коьорів для "засіреня"
-                      learnicusSoundOptions1[c2on].disabled     = c2d;                                   // The control manipulability.
-                      //document.getElementsByName('learnicusSoundOptions1')[c2on].disabled     = c2d;
+                    var options = c202;
+                    function gSound1(c207) {
+                      [c202].style.color        = c207 ? 'graytext' : 'black';            // The label color. Назви коьорів для "засіреня"
+                      [c202][c203].disabled     = c207;                                   // The control manipulability.
+                      //document.getElementsByName('learnicusSoundOptions1')[c203].disabled     = c207;
                     };
                     window.addEventListener('load', function() {                                                                          // Initialize the option controls.
-                      learnicusSoundOptions1[c2a].checked       = JSON.parse(localStorage.getItem(c2la));  // The display activation.
-                      learnicusSoundOptions1[c2on].value        = localStorage.ls_SoundLang1;                       // The display Sound1 value.
-                      if (!learnicusSoundOptions1[c2a].checked) { gSound1(true); }                                    // Set the display Sound1 value.   // активація відображення і показу
-                      learnicusSoundOptions1[c2a].onchange      = function() {
-                        localStorage.learnicusSoundActivated1   = learnicusSoundOptions1[c2a].checked;
-                        localStorage.setItem(c2la, learnicusSoundOptions1[c2a].checked);
-                        gSound1(!learnicusSoundOptions1[c2a].checked);
+                      learnicusSoundOptions1[c206].checked       = JSON.parse(localStorage.getItem(c205));  // The display activation.
+                      learnicusSoundOptions1[c203].value        = localStorage.[c204];                       // The display Sound1 value.
+                      if (!learnicusSoundOptions1[c206].checked) { gSound1(true); }                                    // Set the display Sound1 value.   // активація відображення і показу
+                      learnicusSoundOptions1[c206].onchange      = function() {
+                        localStorage.learnicusSoundActivated1   = learnicusSoundOptions1[c206].checked;
+                        localStorage.setItem(c205, learnicusSoundOptions1[c206].checked);
+                        gSound1(!learnicusSoundOptions1[c206].checked);
                       };
-                      learnicusSoundOptions1[c2on].onchange     = function() {
-                        localStorage.ls_SoundLang1              = learnicusSoundOptions1[c2on].value;
+                      learnicusSoundOptions1[c203].onchange     = function() {
+                        localStorage.[c204]              = learnicusSoundOptions1[c203].value;
                       };
                     });
                     */
 };
-learnicusOptionsCheck2 ('gSound1','learnicusSoundOptions1','learnicusSound1','ls_SoundLang1','learnicusSoundActivated1','learnicusSoundActivated1','learnicusSoundDeactivated1');
-learnicusOptionsCheck2 ('gSound2','learnicusSoundOptions2','ls_SoundLang2','learnicusSound2','learnicusSoundActivated2','learnicusSoundDeactivated2');
+
+// learnicusOptionsCheck2 (c201,      c202,                    c203,             c204,             c205,                     c206,                         c207 )
+learnicusOptionsCheck2    ('gSound1','learnicusSoundOptions1','learnicusSound1','ls_SoundLang1', 'learnicusSoundActivated1','learnicusSoundActivated1',  'learnicusSoundDeactivated1');
+learnicusOptionsCheck2    ('gSound2','learnicusSoundOptions2','learnicusSound2','ls_SoundLang2', 'learnicusSoundActivated2','learnicusSoundActivated2',  'learnicusSoundDeactivated2');
 
 
 
