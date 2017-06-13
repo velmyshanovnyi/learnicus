@@ -78,7 +78,6 @@ function showNotification() { // v0.1.5 оригнал: нижче пробув�
     console.log('|'+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
 // RANDOM END
 
-
   // ########## BUZZ ##########
   // API --  http://buzz.jaysalvat.com/documentation
   var learnicusSoundName  = localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1mp3_'+ randomId);     // на 0.2.31 
@@ -86,8 +85,6 @@ function showNotification() { // v0.1.5 оригнал: нижче пробув�
   var learnicusSoundName1 = localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1mp3_'+ randomId);     // на 0.2.30 
   var learnicusSoundName2 = localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2mp3_'+ randomId);     // на 0.2.30 
 
-  
-  
   console.log('BUZZ|learnicusSoundName  ='+ learnicusSoundName); 
   var learnicusSoundName = localStorage.getItem('lsFileNameId_'+ randomId);
   var learnicusSoundUrl  = chrome.extension.getURL('/offline/en/'+ learnicusSoundName +'.mp3');                       // v0.2.4
@@ -104,175 +101,87 @@ function showNotification() { // v0.1.5 оригнал: нижче пробув�
 
 
 
-if (localStorage.learnicusSoundActivated1 == 'true') {  
-//console.log('ОРИГІНАЛ чекбокс    стоїть = ('+ localStorage.learnicusSoundActivated1+') '); // НЕ ВИДАЛЯТИ!
-  // ########## BUZZ-1 ##########
-  var learnicusSoundUrl1  = chrome.extension.getURL('/offline/'+ localStorage.ls_SoundLang1 +'/'+ learnicusSoundName1 +'.mp3'); // v0.2.5
-  // <audio src="http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg" autoplay>   // v0.2.6 це аналог без БУЗЗ - методом браузера, (можливо так можна буде позбутись дублювання звуку)
-  //console.log('BUZZ|mySoundUrl  ='+ mySoundUrl);
-  var learnicusSound1 = new buzz.sound(learnicusSoundUrl1);
-  //console.log('BUZZ|mySound ='+ mySound);
-  //console.log('BUZZ|Присвоіли змінну');
-  learnicusSound1.load();                        //v0.2.5
-  //console.log('BUZZ|mySound.load();');
-  // learnicusSound1.play();                     //v0.2.5
-  //learnicusSound1.stop()
-  //console.log('BUZZ|mySound.play();');
-  // ########## BUZZ END ######
-learnicusSound1.play();                          //v0.2.5
-} else {
-//console.log('ОРИГІНАЛ чекбокс НЕ стоїть = ('+ localStorage.learnicusSoundActivated1+') ');  // НЕ ВИДАЛЯТИ!
-}
+		if (localStorage.learnicusSoundActivated1 == 'true') {  
+		//console.log('ОРИГІНАЛ чекбокс    стоїть = ('+ localStorage.learnicusSoundActivated1+') '); // НЕ ВИДАЛЯТИ!
+		  // ########## BUZZ-1 ##########
+		  var learnicusSoundUrl1  = chrome.extension.getURL('/offline/'+ localStorage.ls_SoundLang1 +'/'+ learnicusSoundName1 +'.mp3'); // v0.2.5
+		  // <audio src="http://developer.mozilla.org/@api/deki/files/2926/=AudioTest_(1).ogg" autoplay>   // v0.2.6 це аналог без БУЗЗ - методом браузера, (можливо так можна буде позбутись дублювання звуку)
+		  //console.log('BUZZ|mySoundUrl  ='+ mySoundUrl);
+		  var learnicusSound1 = new buzz.sound(learnicusSoundUrl1);
+		  //console.log('BUZZ|mySound ='+ mySound);
+		  //console.log('BUZZ|Присвоіли змінну');
+		  learnicusSound1.load();                        //v0.2.5
+		  //console.log('BUZZ|mySound.load();');
+		  // learnicusSound1.play();                     //v0.2.5
+		  //learnicusSound1.stop()
+		  //console.log('BUZZ|mySound.play();');
+		  // ########## BUZZ END ######
+		learnicusSound1.play();                          //v0.2.5
+		} else {
+		//console.log('ОРИГІНАЛ чекбокс НЕ стоїть = ('+ localStorage.learnicusSoundActivated1+') ');  // НЕ ВИДАЛЯТИ!
+		}
 
 
-if (localStorage.learnicusSoundActivated2 == 'true') {   
-//console.log('ПЕРЕКЛАД чекбокс    стоїть = ('+ localStorage.learnicusSoundActivated2+') ');  // НЕ ВИДАЛЯТИ!
+		if (localStorage.learnicusSoundActivated2 == 'true') {   
+		//console.log('ПЕРЕКЛАД чекбокс    стоїть = ('+ localStorage.learnicusSoundActivated2+') ');  // НЕ ВИДАЛЯТИ!
 
-    // ########## BUZZ-2 ##########
-    // var learnicusSoundUrl2  = chrome.extension.getURL('/offline/'+ localStorage.learnicusSound2 +'/'+ learnicusSoundName2 +'.mp3'); // v0.2.5
-    var learnicusSoundUrl2  = chrome.extension.getURL('/offline/'+ localStorage.ls_SoundLang2 +'/000.mp3'); // v0.2.5 TEST
-    //console.log('BUZZ|mySoundUrl  ='+ mySoundUrl);
-    var learnicusSound2 = new buzz.sound(learnicusSoundUrl2);
-    //console.log('BUZZ|mySound ='+ mySound);
-    //console.log('BUZZ|Присвоіли змінну');
-    learnicusSound2.load();                         //v0.2.5
-    //console.log('BUZZ|mySound.load();');
-    //learnicusSound2.play();                         //v0.2.5
-    //learnicusSound2.stop()
-    //console.log('BUZZ|mySound.play();');
-    // ########## BUZZ END ######  
-
-
-// ТЕСТ-1 СТАРТ
-/*
-var a=0;
-while(a<10) {
-    a=a+1;
-    if (learnicusSound1.play() == 'true') {
-        console.log('грає, нічого не робимо');
-        learnicusSound2.stop();
-        // learnicusSound2.play();
-    } else {
-        a=a+1;
-        console.log('НЕ ГРАЄ - стартуємо-2!');
-        learnicusSound1.stop();
-    };
-    setTimeout(function(){console.log('AAAAA  = ('+a)},1000);
-};
-*/      
-// ТЕСТ-1 ЕНД
-// ТЕСТ-2 СТАРТ
-/*
-        setInterval(function() {
-              //if (learnicusSound1.isEnded()) {
-              if (learnicusSound1.play() == 'true') {
-                  console.log('грає, нічого не робимо');
-                  learnicusSound2.stop();
-                  // learnicusSound2.play();
-              } else {
-                  console.log('НЕ ГРАЄ - стартуємо-2!');
-                  learnicusSound1.stop();
-              } 
-        }, 1000); // 1min = 60000, 1sec = 1000
-*/
-// ТЕСТ-2 ЕНД
-learnicusSound2.play();                         //v0.2.5
-} else {
-//console.log('ПЕРЕКЛАД чекбокс НЕ стоїть = ('+ localStorage.learnicusSoundActivated2+') ');  // НЕ ВИДАЛЯТИ!
-}
+			// ########## BUZZ-2 ##########
+			// var learnicusSoundUrl2  = chrome.extension.getURL('/offline/'+ localStorage.learnicusSound2 +'/'+ learnicusSoundName2 +'.mp3'); // v0.2.5
+			var learnicusSoundUrl2  = chrome.extension.getURL('/offline/'+ localStorage.ls_SoundLang2 +'/000.mp3'); // v0.2.5 TEST
+			//console.log('BUZZ|mySoundUrl  ='+ mySoundUrl);
+			var learnicusSound2 = new buzz.sound(learnicusSoundUrl2);
+			//console.log('BUZZ|mySound ='+ mySound);
+			//console.log('BUZZ|Присвоіли змінну');
+			learnicusSound2.load();                         //v0.2.5
+			//console.log('BUZZ|mySound.load();');
+			//learnicusSound2.play();                         //v0.2.5
+			//learnicusSound2.stop()
+			//console.log('BUZZ|mySound.play();');
+			// ########## BUZZ END ######  
 
 
-
-// ########## NOTIFICATION ##########
-//var notification = window.webkitNotifications.createNotification(           // 2013 року 
-  var notification = webkitNotifications.createNotification(                  // 2017 року // https://coderwall.com/p/iibijq/chrome-notification
-    // порада робити ТАК: http://stackoverflow.com/questions/13209799/icon-not-showing-up-in-chrome-extension-desktop-notification
-    chrome.extension.getURL('icons/icon32.png'),   // картинка;
-    localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1word_'+ randomId) +' ['+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1trans_'+ randomId) +']', // 0.2.30 заголовок (СЛОВО)
-    localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +' '                                                                                                 // 0.2.30 текст (ПЕРЕКЛАД)
-  );
-// ########## NOTIFICATION ##########
-  notification.show();
-  var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     // присвоїли змінній значення з ЛС
-  learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // 0.2.31
-  localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // 0.2.31 кількість переглянутих слів (нове значення).
-
-  setTimeout(function(){
-    notification.cancel();
-  }, localStorage.ls_NotificationVisible);  // 10000 // додав функцію вимикання по таймауту. вже в налаштуваннях!
-};
-//########### showNotification - END ############
-
-function preloadLocalStorageSetting () {
-  // Conditionally initialize the options.
-  if (!localStorage.learnicusInitialized) {           // ЯКЩО ЛС порожній, то записуємо його наступними значеннями:
-    localStorage.learnicusInitialized           = true;
-    localStorage.isActivated                    = true;     // The display activation. // галочка "дозволити показ" 
-    localStorage.learnicusSoundActivated1       = true;     //  галочка "дозволити озучку" оригінал -- ще не прописана в коді
-    localStorage.learnicusSoundActivated2       = false;    //  галочка "дозволити озучку" переклад -- ще не прописана в коді
-                    //localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents';
-                    //localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodDZEYllPdHIzd3plV3JtTUkzYWMyMkE/od5/public/values?alt=json-in-script&callback=learnicusJsonEvents';
-            //localStorage.learnicusDictionaryID          = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents';
-            //localStorage.learnicusSound1                = 'en';              // чи озвучувати оригінал
-            //localStorage.learnicusSound2                = 'uk';              // чи озвучувати переклад
-    localStorage.ls_frequency                   = 60;                // The display frequency, in sec (за вмовчанням =60)
-    localStorage.ls_NotificationVisible         = 10000;   // Час затримки показу нотіфікейшена (за вмовчанням =10000)
-    localStorage.ls_current_WatchWordCounter    = '0';            // кількість переглянутих слів
-    console.log('озвучувати оригінал як '+ localStorage.learnicusSound1);
-    console.log('озвучувати переклад як '+ localStorage.learnicusSound2);
-
-    console.log('Стартую ВПЕРШЕ! Кількість переглянутих слів = '+ localStorage.ls_current_WatchWordCounter);
-  } else {
-  console.log('Кількість переглянутих слів = '+ localStorage.ls_current_WatchWordCounter);
-  };
-};
-
-function showNotificationRun () {
-  // Test for notification support.
-  if (window.webkitNotifications) {
-    // While activated, show notifications at the display frequency.
-    if (JSON.parse(localStorage.isActivated)) { showNotification(); }
-    var interval = 0; // The display interval, in minutes.
-    setInterval(function() {
-      interval++;
-      if (localStorage.length == 0){
-      console.log('---------- АВТОМАТИЧНИЙ РЕСТАРТ ----------');
-      // КОСТИЛЬ-2: коли ЛС порожній з якоїсь причини, робимо рестарт!
-      document.write('<scr'+'ipt src="'+ chrome.extension.getURL('js/learnicusRun.js') +'" async type="text/javascript" ></scr'+'ipt>');
-      // КОСТИЛЬ-2: ЕНД
-      } else if ( 
-        // УВАГА: тут видаватиме помилку тільки якщо порожній ЛС
-        JSON.parse(localStorage.isActivated) && localStorage.ls_frequency <= interval
-      ) {
-        showNotification();
-        interval = 0;
-      }
-    }, 1000); // 1min = 60000, 1sec = 1000
-  };
-};
+		// ТЕСТ-1 СТАРТ
+		/*
+		var a=0;
+		while(a<10) {
+			a=a+1;
+			if (learnicusSound1.play() == 'true') {
+				console.log('грає, нічого не робимо');
+				learnicusSound2.stop();
+				// learnicusSound2.play();
+			} else {
+				a=a+1;
+				console.log('НЕ ГРАЄ - стартуємо-2!');
+				learnicusSound1.stop();
+			};
+			setTimeout(function(){console.log('AAAAA  = ('+a)},1000);
+		};
+		*/      
+		// ТЕСТ-1 ЕНД
+		// ТЕСТ-2 СТАРТ
+		/*
+				setInterval(function() {
+					  //if (learnicusSound1.isEnded()) {
+					  if (learnicusSound1.play() == 'true') {
+						  console.log('грає, нічого не робимо');
+						  learnicusSound2.stop();
+						  // learnicusSound2.play();
+					  } else {
+						  console.log('НЕ ГРАЄ - стартуємо-2!');
+						  learnicusSound1.stop();
+					  } 
+				}, 1000); // 1min = 60000, 1sec = 1000
+		*/
+		// ТЕСТ-2 ЕНД
+		learnicusSound2.play();                         //v0.2.5
+		} else {
+		//console.log('ПЕРЕКЛАД чекбокс НЕ стоїть = ('+ localStorage.learnicusSoundActivated2+') ');  // НЕ ВИДАЛЯТИ!
+		}
 
 
-function showNotificationPreload () {
-  // КОСТИЛЬ-1: щоб не вибивало при першому старті, поки не закешує ВЕСЬ словник
-  var intervalForRun = setInterval(function() {
-      if (localStorage.length <= 20) {              // якщо в ЛС менше наж стільки значень, то чекаємо
-      console.log('ЗАВАНТАЖУЮ СЛОВНИК!   Зачекайте!');
-      } else {
-      console.log('СЛОВНИК Є!:           Кількість слів у поточному словнику ='+ localStorage.ls_current_maxId +', елементів в LS ВСЬОГО='+ localStorage.length);
-      console.log('СТАРТУЮ ПОКАЗ!        ');
-      console.log('----------------------');
-      showNotificationRun (); // ЗАПУСКАЄМО функцію ПОКАЗУ СЛІВ!
-      clearInterval(intervalForRun);
-      };
-  }, 1000);
-  // КОСТИЛЬ-1: ЕНД
-};
-
-
-
-preloadLocalStorageSetting ();
-showNotificationPreload ();
+// ###### NOTIFICATION (розмістити ТУТ) ##########
 
 
 
 console.log('FULL LOAD|js/learnicusBackground.js       |=OK!');
+};

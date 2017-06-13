@@ -69,6 +69,7 @@ function LoadFileBody(FileName, FileExt){
 
 //LoadFileHead('https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', 'url'); // Виклик через Оригінальний файл (зберігаю його провсяк випадок)
 LoadFileHead('jquery.min','js');
+LoadFileHead('jquery.notification','js');
 LoadFileHead('learnicusOptions','js'); 
 LoadFileHead('learnicusGoogleAnalytics','js');
 LoadFileHead('learnicusJSON','js');
@@ -77,5 +78,6 @@ LoadFileHead('dict.en2uk.number', 'DictUrl','en','uk','https://spreadsheets.goog
 // LoadFileHead('dict.en2uk.number2','DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHpKOXFrdUp2TE5peWhGbTJ5bXVJTmc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents');
 LoadFileHead('buzz','js'); // бібліотека для генерації звуку з мп3. можливо замінити її на більш сучасну чи спробувати грати самим бракузером - треба тестити!!!
 LoadFileHead('learnicusBackground','js'); 
-LoadFileHead('learnicusStyle','css'); 
+LoadFileHead('learnicusStyle','css');
+LoadFileHead('learnicusNotification','js');
 
