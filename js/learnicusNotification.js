@@ -1,18 +1,21 @@
+var ThisFileName    = 'learnicusNotification';  // назва цього файла.
+var ThisFileNameExt = 'js';            // тип цього файла. 
+
+
+
 // ########## NOTIFICATION ##########
-// RANDOM START
-// использование Math.round() даст неравномерное распределение!
+// learnicusNotificationTest
+// $.notification.requestPermission(function () {console.log($.notification.permissionLevel());});
+$('.learnicusNotificationPermission').text('Notifications are ' + $.notification.permissionLevel()); // learnicusNotificationPermission
+$('.learnicusNotificationTest').click(function () {
+	// RANDOM START
+	// использование Math.round() даст неравномерное распределение!
     var randomIdMax = localStorage.ls_current_maxId;                            // v0.2.30
     var randomId = Math.floor(Math.random() * randomIdMax);
     localStorage.ls_current_randomId = randomId;                                // v0.2.30
     console.log('RANDOM = '+ localStorage.ls_current_randomId);
     console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
-// RANDOM END
-
-
-// learnicusNotificationTest
-$.notification.requestPermission(function () {console.log($.notification.permissionLevel());});
-$('.learnicusNotificationPermission').text('Notifications are ' + $.notification.permissionLevel()); // learnicusNotificationPermission
-$('.learnicusNotificationTest').click(function () {
+	// RANDOM END
     var options = {
         tag: 'notificationReplaceId',
         iconUrl: chrome.extension.getURL('icons/icon32.png'),
@@ -24,28 +27,14 @@ $('.learnicusNotificationTest').click(function () {
             console.log('learnicusNotificationTest');
         }
     };
-	$.notification(options)
-    // var notification = $.notification(options);
+	// $.notification(options)
+    var learnicusNotification = $.notification(options);
 });
 
-
-
-    $.notification({
-        tag: 'notificationReplaceId',
-        iconUrl: chrome.extension.getURL('icons/icon32.png'),
-        title:    localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1word_'+ randomId) +' ['+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1trans_'+ randomId) +']', // 0.2.30 заголовок (СЛОВО)
-        body:     localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +' ['+ Math.random() +']',
-		autoclose: true,
-		timeout: (localStorage.ls_NotificationVisible*1000), // close notification in ** sec // learnicusNotificationTimeout // функція вимикання по таймауту. вже в налаштуваннях!
-        onclick: function () {
-            console.log('learnicusNotificationTest');
-        }
-    }).show();
-	
-
+// learnicusNotification();
 // learnicusNotificationTest END
-// ###### NOTIFICATION ##########
-
+// ###### NOTIFICATION END ##########
+// showNotification(); 
 
 
 
@@ -70,9 +59,32 @@ localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    //
 
 
 
-function showNotificationRun () {
+function learnicusNotification (){
+	if (JSON.parse(localStorage.isActivated)) { 
+		console.log('learnicusNotification ||| ||| ||| ||| |||'); 
+		// КОСТИЛЬ-1: щоб не вибивало при першому старті, поки не закешує ВЕСЬ словник
+		var intervalForRun = setInterval(function() {
+			if (localStorage.length <= 20) {              // якщо в ЛС менше наж стільки значень, то чекаємо
+			console.log('ЗАВАНТАЖУЮ СЛОВНИК!   Зачекайте!');
+			} else {
+			console.log('СЛОВНИК Є!:           Кількість слів у поточному словнику ='+ localStorage.ls_current_maxId +', елементів в LS ВСЬОГО='+ localStorage.length);
+			console.log('СТАРТУЮ ПОКАЗ!        ');
+			console.log('----------------------');
+			showNotificationRun (); // ЗАПУСКАЄМО функцію ПОКАЗУ СЛІВ!
+			clearInterval(intervalForRun);
+			};
+		}, 5000);
+		// КОСТИЛЬ-1: ЕНД
+		
+		
+		
+		
+	}
+};
+
+function showNotificationRun (){
   // Test for notification support.
-  if (window.webkitNotifications) {
+  if (window.webkitNotifications){
     // While activated, show notifications at the display frequency.
     if (JSON.parse(localStorage.isActivated)) { showNotification(); }
     var interval = 0; // The display interval, in minutes.
@@ -93,8 +105,6 @@ function showNotificationRun () {
     }, 1000); // 1min = 60000, 1sec = 1000
   };
 };
-
-
 
 function preloadLocalStorageSetting () {
   // Conditionally initialize the options.
@@ -120,7 +130,6 @@ function preloadLocalStorageSetting () {
   };
 };
 
-
 function showNotificationPreload () {
   // КОСТИЛЬ-1: щоб не вибивало при першому старті, поки не закешує ВЕСЬ словник
   var intervalForRun = setInterval(function() {
@@ -141,4 +150,4 @@ function showNotificationPreload () {
 
 preloadLocalStorageSetting ();
 showNotificationPreload ();
-
+learnicusNotification ();

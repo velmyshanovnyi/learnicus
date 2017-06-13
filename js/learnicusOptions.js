@@ -88,8 +88,6 @@ learnicusOptionsCheck2    ('gSound2','learnicusSoundOptions2','learnicusSound2',
 
 
 
-
-
 // для деактивації (засірення і блокування контенту/параметрів при ненатиснутому чекбоксі)
 function gSound1(learnicusSoundDeactivated1) {
   learnicusSoundOptions1.style.color                            = learnicusSoundDeactivated1 ? 'graytext' : 'black'; // The label color. Назви коьорів для "засіреня"
