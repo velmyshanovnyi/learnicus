@@ -29,11 +29,12 @@
 function learnicusOptionsCheck1 (c101, c102, c103, c104, c105, c106){
   // для деактивації (засірення і блокування контенту/параметрів при ненатиснутому чекбоксі)
   function ghost(isDeactivated) {
-    window[c102].style.color                                 = isDeactivated ? 'graytext' : 'black';   // The label color. Назви коьорів для "засіреня"
-    window[c102].learnicusFrequency.disabled                 = isDeactivated;                          // The control manipulability.
-    window[c102].learnicusNotificationVisible.disabled       = isDeactivated;                          // The control manipulability. //v0.2.6
-    window[c102].learnicusDictionaryOptions.disabled         = isDeactivated;
-    window[c102].learnicusDictionaryID.disabled              = isDeactivated;
+    windowOptions.style.color                                 = isDeactivated ? 'graytext' : 'black';   // The label color. Назви коьорів для "засіреня"
+    windowOptions.learnicusFrequency.disabled                 = isDeactivated;                          // The control manipulability.
+    windowOptions.learnicusNotificationVisible.disabled       = isDeactivated;                          // The control manipulability. //v0.2.6
+    windowOptions.learnicusDictionaryOptions.disabled         = isDeactivated;
+    windowOptions.learnicusDictionaryID.disabled              = isDeactivated;
+	window[c102].learnicusDictionaryID.disabled              = isDeactivated;
   };
 
   window.addEventListener('load', function() {                               // Initialize the option controls.
@@ -51,9 +52,9 @@ function learnicusOptionsCheck1 (c101, c102, c103, c104, c105, c106){
 };
 
 // визначення параметрів (c101,    c102,    c103,                           c104,         c105,                   c106)
-learnicusOptionsCheck1   ('ghost','options','learnicusFrequency',          'isActivated','ls_frequency',          'isActivated');
-learnicusOptionsCheck1   ('ghost','options','learnicusNotificationVisible','isActivated','ls_NotificationVisible','isActivated');
-learnicusOptionsCheck1   ('ghost','options','learnicusDictionaryID',       'isActivated','ls_DictionaryID',       'isActivated');
+learnicusOptionsCheck1   ('ghost','Options','learnicusFrequency',          'isActivated','ls_frequency',          'isActivated');
+learnicusOptionsCheck1   ('ghost','Options','learnicusNotificationVisible','isActivated','ls_NotificationVisible','isActivated');
+learnicusOptionsCheck1   ('ghost','Options','learnicusDictionaryID',       'isActivated','ls_DictionaryID',       'isActivated');
 
 
 
