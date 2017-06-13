@@ -7,23 +7,6 @@
   field.
 */
 
-// РОЗПИСАТИ (дізнатись) ЗА ЩО ВІДПОВІДАЮТЬ ЦІ ПАРАМЕТРИ
-// c1g - ghost ??? = c101
-// c2g - gSound1|gSound2 = c201
-// c1oo - options ??? 	= c102																// C=checkbox ID=1 Option On
-// c2oo - learnicusSoundOptions1|learnicusSoundOptions2		// =c202							// C=checkbox ID=2 Option On
-// c1on - learnicusFrequency|learnicusNotificationVisible|learnicusDictionaryID ???	 // =c103
-// c2on -  // =c203
-// c1ln - ls_frequency|ls_NotificationVisible|ls_DictionaryID // =c105
-// c2ln -  // c204
-// c1oa - isActivated // c104
-// c1la - isActivated // c106
-// c2la - // c205
-// c2a -  // c206
-// c2d -  // c207
-// КОСТИЛЬ: (щоб побороти помилку //Uncaught TypeError: Cannot set property 'checked' of undefined//) :
-
-
 
 //УВАГА! ВСЕ ПРОСТО! function learnicusOptionsCheck1 з приведеними параметрами, використовується для пакетної обробки "learnicusOptionsCheck1", що йдуть через 20 рядків нижче! 
 function learnicusOptionsCheck1 (c101, c102, c103, c104, c105, c106){

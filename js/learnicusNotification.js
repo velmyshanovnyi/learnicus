@@ -4,80 +4,46 @@
     var randomIdMax = localStorage.ls_current_maxId;                            // v0.2.30
     var randomId = Math.floor(Math.random() * randomIdMax);
     localStorage.ls_current_randomId = randomId;                                // v0.2.30
-    console.log('RANDOM:');
-    console.log('|'+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
+    console.log('RANDOM = '+ localStorage.ls_current_randomId);
+    console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
 // RANDOM END
 
 
-// learnicusNotificationTimeout START
-// learnicusNotificationTimeout END
-
 // learnicusNotificationTest
+$.notification.requestPermission(function () {console.log($.notification.permissionLevel());});
+$('.learnicusNotificationPermission').text('Notifications are ' + $.notification.permissionLevel()); // learnicusNotificationPermission
 $('.learnicusNotificationTest').click(function () {
     var options = {
         tag: 'notificationReplaceId',
         iconUrl: chrome.extension.getURL('icons/icon32.png'),
-        title: localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1word_'+ randomId) +' ['+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1trans_'+ randomId) +']', // 0.2.30 заголовок (СЛОВО)
-        body:  localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +' ',
-		timeout: 5000, // close notification in 5 sec
+        title:    localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1word_'+ randomId) +' ['+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1trans_'+ randomId) +']', // 0.2.30 заголовок (СЛОВО)
+        body:     localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +' ['+ Math.random() +']',
+		autoclose: true,
+		timeout: (localStorage.ls_NotificationVisible*1000), // close notification in ** sec // learnicusNotificationTimeout // функція вимикання по таймауту. вже в налаштуваннях!
         onclick: function () {
-            console.log('b-icon-one b-icon-one b-icon-one');
+            console.log('learnicusNotificationTest');
         }
     };
-
-    $.notification(options);
-});
-// learnicusNotificationTest END
-
-
-
-
-
-$('.b-icon').click(function () {
-    var options = {
-        iconUrl: chrome.extension.getURL('icons/icon32.png'),
-        title: 'Quick One!',
-        body: 'Message. Auto close in 5 sec... Or close on click',
-        timeout: 5000, // close notification in 5 sec
-        onclick: function () {
-            console.log('Pewpew');
-        }
-    };
-    var notification = $.notification(options);
+	$.notification(options)
+    // var notification = $.notification(options);
 });
 
-$('.b-icon-one').click(function () {
-    var options = {
-        iconUrl: chrome.extension.getURL('icons/icon32.png'),
-        title: 'Only one!',
+
+
+    $.notification({
         tag: 'notificationReplaceId',
-        body: Math.random(),
-		timeout: 5000, // close notification in 5 sec
+        iconUrl: chrome.extension.getURL('icons/icon32.png'),
+        title:    localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1word_'+ randomId) +' ['+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1trans_'+ randomId) +']', // 0.2.30 заголовок (СЛОВО)
+        body:     localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +' ['+ Math.random() +']',
+		autoclose: true,
+		timeout: (localStorage.ls_NotificationVisible*1000), // close notification in ** sec // learnicusNotificationTimeout // функція вимикання по таймауту. вже в налаштуваннях!
         onclick: function () {
-            console.log('b-icon-one b-icon-one b-icon-one');
+            console.log('learnicusNotificationTest');
         }
-    };
+    }).show();
+	
 
-    $.notification(options);
-});
-
-$('.b-string').click(function () {
-    $.notification("Hello from jQuery.notifications!");
-});
-
-$('.b-deferred').click(function () {
-    $.notification("Hello from jQuery.notifications!")
-        .then(function (notification) {
-            console.log('Ok!');
-            setTimeout(function () {
-                notification.close();
-            }, 2000);
-        }, function (error) {
-            console.error('Rejected with status ' + error);
-        });
-});
-
-$('.b-level').text('Notifications are ' + $.notification.permissionLevel());
+// learnicusNotificationTest END
 // ###### NOTIFICATION ##########
 
 
@@ -95,16 +61,13 @@ $('.b-level').text('Notifications are ' + $.notification.permissionLevel());
   );
 // ########## NOTIFICATION ##########
   notification.show();
-  var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     // присвоїли змінній значення з ЛС
-  learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // 0.2.31
-  localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // 0.2.31 кількість переглянутих слів (нове значення).
-
-  setTimeout(function(){
-    notification.cancel();
-  }, localStorage.ls_NotificationVisible);  // 10000 // додав функцію вимикання по таймауту. вже в налаштуваннях!
-};
 */
 // ########## NOTIFICATION - OLD - END ##########
+
+var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     // присвоїли змінній значення з ЛС
+learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // 0.2.31
+localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // 0.2.31 кількість переглянутих слів (нове значення).
+
 
 
 function showNotificationRun () {
@@ -122,7 +85,7 @@ function showNotificationRun () {
       // КОСТИЛЬ-2: ЕНД
       } else if ( 
         // УВАГА: тут видаватиме помилку тільки якщо порожній ЛС
-        JSON.parse(localStorage.isActivated) && localStorage.ls_frequency <= interval
+        JSON.parse(localStorage.isActivated) && localStorage.ls_frequencylocalStorage.ls_frequency <= interval
       ) {
         showNotification();
         interval = 0;
@@ -135,19 +98,19 @@ function showNotificationRun () {
 
 function preloadLocalStorageSetting () {
   // Conditionally initialize the options.
-  if (!localStorage.learnicusInitialized) {           // ЯКЩО ЛС порожній, то записуємо його наступними значеннями:
+  if (!localStorage.learnicusInitialized) { // ЯКЩО ЛС порожній, то записуємо його наступними значеннями:
     localStorage.learnicusInitialized           = true;
     localStorage.isActivated                    = true;     // The display activation. // галочка "дозволити показ" 
-    localStorage.learnicusSoundActivated1       = true;     //  галочка "дозволити озучку" оригінал -- ще не прописана в коді
+    localStorage.learnicusSoundActivated1       = false;    //  галочка "дозволити озучку" оригінал -- ще не прописана в коді
     localStorage.learnicusSoundActivated2       = false;    //  галочка "дозволити озучку" переклад -- ще не прописана в коді
-			//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents';
-			//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodDZEYllPdHIzd3plV3JtTUkzYWMyMkE/od5/public/values?alt=json-in-script&callback=learnicusJsonEvents';
-		//localStorage.learnicusDictionaryID          = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents';
-		//localStorage.learnicusSound1                = 'en';              // чи озвучувати оригінал
-		//localStorage.learnicusSound2                = 'uk';              // чи озвучувати переклад
-    localStorage.ls_frequency                   = 60;                // The display frequency, in sec (за вмовчанням =60)
-    localStorage.ls_NotificationVisible         = 10000;   // Час затримки показу нотіфікейшена (за вмовчанням =10000)
-    localStorage.ls_current_WatchWordCounter    = '0';            // кількість переглянутих слів
+	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents';
+	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodDZEYllPdHIzd3plV3JtTUkzYWMyMkE/od5/public/values?alt=json-in-script&callback=learnicusJsonEvents';
+	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents';
+	localStorage.learnicusSound1                = 'en';     // чи озвучувати оригінал
+	localStorage.learnicusSound2                = 'uk';     // чи озвучувати переклад
+    localStorage.ls_frequency                   = 30;       // The display frequency, in sec (за вмовчанням =60)
+    localStorage.ls_NotificationVisible         = 5;        // Час затримки показу нотіфікейшена (за вмовчанням =10000)
+    localStorage.ls_current_WatchWordCounter    = '0';      // кількість переглянутих слів
     console.log('озвучувати оригінал як '+ localStorage.learnicusSound1);
     console.log('озвучувати переклад як '+ localStorage.learnicusSound2);
 

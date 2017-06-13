@@ -74,8 +74,8 @@ function showNotification() { // v0.1.5 оригнал: нижче пробув�
     var randomIdMax = localStorage.ls_current_maxId;                            // v0.2.30
     var randomId = Math.floor(Math.random() * randomIdMax);
     localStorage.ls_current_randomId = randomId;                                // v0.2.30
-    console.log('RANDOM:');
-    console.log('|'+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
+    console.log('RANDOM = '+ localStorage.ls_current_randomId);
+    console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
 // RANDOM END
 
   // ########## BUZZ ##########
