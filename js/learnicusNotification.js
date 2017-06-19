@@ -1,21 +1,35 @@
 var ThisFileName    = 'learnicusNotification';  // назва цього файла.
 var ThisFileNameExt = 'js';            // тип цього файла. 
 
-
+function learnicusRandom(){
+	// RANDOM START
+	// использование Math.round() даст неравномерное распределение!
+	var randomIdMax = localStorage.ls_current_maxId;                            // v3
+	var randomId = Math.floor(Math.random() * randomIdMax);
+	localStorage.ls_current_randomId = randomId;                                // v3
+	console.log('RANDOM = '+ localStorage.ls_current_randomId);
+	console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //v3
+	// RANDOM END
+};
 
 // ########## NOTIFICATION ##########
 // learnicusNotificationTest
 // $.notification.requestPermission(function () {console.log($.notification.permissionLevel());});
 $('.learnicusWatchWordCounter').text('' + localStorage.ls_current_WatchWordCounter); // learnicusWatchWordCounter
 $('.learnicusNotificationPermission').text('Notifications are ' + $.notification.permissionLevel()); // learnicusNotificationPermission
+
 $('.learnicusNotificationTest').click(function () {
+	var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     // присвоїли змінній значення з ЛС
+    learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // 0.2.31
+    localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // 0.2.31 кількість переглянутих слів (нове значення).
+
 	// RANDOM START
 	// использование Math.round() даст неравномерное распределение!
-    var randomIdMax = localStorage.ls_current_maxId;                            // v0.2.30
-    var randomId = Math.floor(Math.random() * randomIdMax);
-    localStorage.ls_current_randomId = randomId;                                // v0.2.30
-    console.log('RANDOM = '+ localStorage.ls_current_randomId);
-    console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
+	var randomIdMax = localStorage.ls_current_maxId;                            // v3
+	var randomId = Math.floor(Math.random() * randomIdMax);
+	localStorage.ls_current_randomId = randomId;                                // v3
+	console.log('RANDOM = '+ localStorage.ls_current_randomId);
+    console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //v3
 	// RANDOM END
     var options = {
         tag: 'notificationReplaceId',
@@ -29,7 +43,7 @@ $('.learnicusNotificationTest').click(function () {
         }
     };
 	// $.notification(options)
-    var learnicusNotification = $.notification(options);
+    var learnicusNotification1 = $.notification(options);
 });
 
 // learnicusNotification();
@@ -37,16 +51,6 @@ $('.learnicusNotificationTest').click(function () {
 // ###### NOTIFICATION END ##########
 
 
-function learnicusRandom(){
-	// RANDOM START
-	// использование Math.round() даст неравномерное распределение!
-	var randomIdMax = localStorage.ls_current_maxId;                            // v3
-	var randomId = Math.floor(Math.random() * randomIdMax);
-	localStorage.ls_current_randomId = randomId;                                // v3
-	console.log('RANDOM = '+ localStorage.ls_current_randomId);
-	console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
-	// RANDOM END
-};
 function learnicusNotification (){
 	var options = {
         tag: 'notificationReplaceId',
@@ -161,4 +165,5 @@ function showNotificationPreload () {
 
 preloadLocalStorageSetting ();
 showNotificationPreload ();
+learnicusNotification ();
 learnicusNotificationRun ();
