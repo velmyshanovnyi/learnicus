@@ -1,6 +1,14 @@
 var ThisFileName    = 'learnicusNotification';  // назва цього файла.
 var ThisFileNameExt = 'js';            // тип цього файла. 
 
+// рахує кількість переглянутих слів
+learnicusWatchWordCounterAutoUpdate = function learnicusWatchWordCounterAutoUpdate() {
+		document.getElementById('learnicusWatchWordCounter').textContent = localStorage.ls_current_WatchWordCounter;
+		setInterval(function() {
+			document.getElementById('learnicusWatchWordCounter').textContent = localStorage.ls_current_WatchWordCounter;
+		}, localStorage.ls_frequency * 1000);
+};
+
 function learnicusRandom(){
 	// RANDOM START
 	// использование Math.round() даст неравномерное распределение!
@@ -12,17 +20,22 @@ function learnicusRandom(){
 	// RANDOM END
 };
 
+
+
 // ########## NOTIFICATION ##########
 // learnicusNotificationTest
 // $.notification.requestPermission(function () {console.log($.notification.permissionLevel());});
-$('.learnicusWatchWordCounter').text('' + localStorage.ls_current_WatchWordCounter); // learnicusWatchWordCounter
+// $('.learnicusWatchWordCounter').text('' + localStorage.ls_current_WatchWordCounter);        // learnicusWatchWordCounter
+// $('.learnicusWatchWordCounterAutoUpdate').text('' + learnicusWatchWordCounterAutoUpdate);   // learnicusWatchWordCounterAutoUpdate
 $('.learnicusNotificationPermission').text('Notifications are ' + $.notification.permissionLevel()); // learnicusNotificationPermission
 
 $('.learnicusNotificationTest').click(function () {
-	var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     // присвоїли змінній значення з ЛС
-    learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // 0.2.31
-    localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // 0.2.31 кількість переглянутих слів (нове значення).
+    var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     // присвоїли змінній значення з ЛС
+    learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // v3
+    localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // v3 кількість переглянутих слів (нове значення).
 
+	learnicusWatchWordCounterAutoUpdate();
+	
 	// RANDOM START
 	// использование Math.round() даст неравномерное распределение!
 	var randomIdMax = localStorage.ls_current_maxId;                            // v3
@@ -51,7 +64,7 @@ $('.learnicusNotificationTest').click(function () {
 // ###### NOTIFICATION END ##########
 
 
-function learnicusNotification (){
+function learnicusNotification2 (){
 	var options = {
         tag: 'notificationReplaceId',
         iconUrl: chrome.extension.getURL('icons/icon32.png'),
@@ -60,10 +73,10 @@ function learnicusNotification (){
 		autoclose: true,
 		timeout: (localStorage.ls_NotificationVisible*1000), // close notification in ** sec // learnicusNotificationTimeout // функція вимикання по таймауту. вже в налаштуваннях!
         onclick: function () {
-            console.log('learnicusNotificationTest');
+            console.log('learnicusNotification2Test');
         }
     };
-	$.notification(options)
+	$.notification2(options)
     // var learnicusNotification = $.notification(options);
 };
 
@@ -133,8 +146,8 @@ function preloadLocalStorageSetting () {
 	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents';
 	localStorage.learnicusSound1                = 'en';     // чи озвучувати оригінал
 	localStorage.learnicusSound2                = 'uk';     // чи озвучувати переклад
-    localStorage.ls_frequency                   = 30;       // The display frequency, in sec (за вмовчанням =60)
-    localStorage.ls_NotificationVisible         = 5;        // Час затримки показу нотіфікейшена (за вмовчанням =10000)
+    localStorage.ls_frequency                   = 30;       // The display frequency, in sec (за вмовчанням =30)
+    localStorage.ls_NotificationVisible         = 5;        // Час затримки показу нотіфікейшена (за вмовчанням =5)
     localStorage.ls_current_WatchWordCounter    = '0';      // кількість переглянутих слів
     console.log('озвучувати оригінал як '+ localStorage.learnicusSound1);
     console.log('озвучувати переклад як '+ localStorage.learnicusSound2);
@@ -165,5 +178,5 @@ function showNotificationPreload () {
 
 preloadLocalStorageSetting ();
 showNotificationPreload ();
-learnicusNotification ();
+learnicusNotification2 ();
 learnicusNotificationRun ();

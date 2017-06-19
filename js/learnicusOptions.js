@@ -106,9 +106,6 @@ window.addEventListener('load', function() {                                    
   };
 });
 
-
-
-
 // для деактивації (засірення і блокування контенту/параметрів при ненатиснутому чекбоксі)
 function gSound2(learnicusSoundDeactivated2) {
   learnicusSoundOptions2.style.color                            = learnicusSoundDeactivated2 ? 'graytext' : 'black';  // The label color. Назви коьорів для "засіреня"
@@ -128,13 +125,13 @@ window.addEventListener('load', function() {                                    
 });
 
 
-
 // рахує кількість переглянутих слів
-learnicusWatchWordCounter = function learnicusWatchWordCounter() {
-        document.getElementById('learnicusWatchWordCounter').textContent = localStorage.ls_current_WatchWordCounter;
-    setInterval(function() {
-        document.getElementById('learnicusWatchWordCounter').textContent = localStorage.ls_current_WatchWordCounter;
-    }, localStorage.ls_frequency * 1000);
+// learnicusWatchWordCounter = function learnicusWatchWordCounter() {        //v2
+learnicusWatchWordCounterAutoUpdate = function learnicusWatchWordCounterAutoUpdate() { //v3
+		document.getElementById('learnicusWatchWordCounter').textContent = localStorage.ls_current_WatchWordCounter;
+		setInterval(function() {
+			document.getElementById('learnicusWatchWordCounter').textContent = localStorage.ls_current_WatchWordCounter;
+		}, localStorage.ls_frequency * 1000);
 };
 
 
