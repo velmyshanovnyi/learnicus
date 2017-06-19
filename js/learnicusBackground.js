@@ -9,7 +9,6 @@
 */
 console.log('START----|js/learnicusBackground.js       |=OK!');
 
-
 /*
 // Поки що вийшло організувати роботу НАПРЯМУ без пача! активувати його лише тоді, коли не буде іншого виходу!
 // PATCH! для виправлення можливостай робити кліки на кнопках на сторінці налаштувань 
@@ -37,7 +36,6 @@ chrome.extension.onMessage.addListener(
 
 
 // ########## BUZZ CHECK ##########
-
 // API --  http://buzz.jaysalvat.com/documentation
 console.log('BUZZ|Check browser');  // Check if the HTML5 audio tag is supported by the browser.
 if (!buzz.isSupported()) {
@@ -59,29 +57,28 @@ console.log('BUZZ|Check AAC Format'); // Check if the AAC audio format is suppor
 if (!buzz.isAACSupported()) {
   alert("Your browser doesn't support AAC Format.");
 }
-
 // ########## BUZZ CHECK END ##########
 
 
 
 
-//########### showNotification - START ##########
+//########### showNotification - START ########## // v2
 function showNotification() { // v0.1.5 оригнал: нижче пробував $(document).ready(function ()  - то воно глючить, а так (v0.1.5) за 1 цикл починає вже нормально працювати!
 // $(document).ready(function show() {
 
-// RANDOM START
-// использование Math.round() даст неравномерное распределение!
-    var randomIdMax = localStorage.ls_current_maxId;                            // v0.2.30
-    var randomId = Math.floor(Math.random() * randomIdMax);
-    localStorage.ls_current_randomId = randomId;                                // v0.2.30
-    console.log('RANDOM = '+ localStorage.ls_current_randomId);
-    console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //0.2.31
-// RANDOM END
+	// RANDOM START
+	// использование Math.round() даст неравномерное распределение!
+	var randomIdMax = localStorage.ls_current_maxId;                            // v3
+	var randomId = Math.floor(Math.random() * randomIdMax);
+	localStorage.ls_current_randomId = randomId;                                // v3
+	console.log('RANDOM = '+ localStorage.ls_current_randomId);
+    console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //v3
+	// RANDOM END
 
   // ########## BUZZ ##########
   // API --  http://buzz.jaysalvat.com/documentation
   var learnicusSoundName  = localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1mp3_'+ randomId);     // на 0.2.31 
-  //var learnicusSoundName  = learnicusSoundName.toLowerCase();                 // на 0.2.23 почало глючити
+  //var learnicusSoundName  = learnicusSoundName.toLowerCase();                                                       // на 0.2.23 почало глючити
   var learnicusSoundName1 = localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1mp3_'+ randomId);     // на 0.2.30 
   var learnicusSoundName2 = localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2mp3_'+ randomId);     // на 0.2.30 
 
@@ -98,8 +95,6 @@ function showNotification() { // v0.1.5 оригнал: нижче пробув�
   learnicusSound.play();
   //console.log('BUZZ|mySound.play();');
   // ########## BUZZ END ######
-
-
 
 		if (localStorage.learnicusSoundActivated1 == 'true') {  
 		//console.log('ОРИГІНАЛ чекбокс    стоїть = ('+ localStorage.learnicusSoundActivated1+') '); // НЕ ВИДАЛЯТИ!
@@ -120,7 +115,6 @@ function showNotification() { // v0.1.5 оригнал: нижче пробув�
 		} else {
 		//console.log('ОРИГІНАЛ чекбокс НЕ стоїть = ('+ localStorage.learnicusSoundActivated1+') ');  // НЕ ВИДАЛЯТИ!
 		}
-
 
 		if (localStorage.learnicusSoundActivated2 == 'true') {   
 		//console.log('ПЕРЕКЛАД чекбокс    стоїть = ('+ localStorage.learnicusSoundActivated2+') ');  // НЕ ВИДАЛЯТИ!
@@ -177,9 +171,7 @@ function showNotification() { // v0.1.5 оригнал: нижче пробув�
 		} else {
 		//console.log('ПЕРЕКЛАД чекбокс НЕ стоїть = ('+ localStorage.learnicusSoundActivated2+') ');  // НЕ ВИДАЛЯТИ!
 		}
-
-
-// ###### NOTIFICATION (розмістити ТУТ) ##########
+// ###### NOTIFICATION (розмістити ТУТ) ########## // v2
 
 
 

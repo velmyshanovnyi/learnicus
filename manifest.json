@@ -1,13 +1,12 @@
 {
-  "version": "0.1",
-  "name": "Learnicus-2 // 20170619-2030",
-  "description": "Learnicus-2",
+  "version": "1.0",
+  "name": "Learnicus",
+  "description": "Learnicus",
   
   "browser_action": {
     "default_icon"    : "icons/icon19.png",
-    /* "default_popup": "popup--sample.html",*/
     "default_popup"   : "learnicusOptions.html",
-    "default_title"   : "Learnicus-2"
+    "default_title"   : "Learnicus"
   },
   // "background" : {"scripts": ["js/learnicusRun.js"]},  // ERROR line:119
   "background": {
