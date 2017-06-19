@@ -6,6 +6,7 @@ var ThisFileNameExt = 'js';            // тип цього файла.
 // ########## NOTIFICATION ##########
 // learnicusNotificationTest
 // $.notification.requestPermission(function () {console.log($.notification.permissionLevel());});
+$('.learnicusWatchWordCounter').text('' + localStorage.ls_current_WatchWordCounter); // learnicusWatchWordCounter
 $('.learnicusNotificationPermission').text('Notifications are ' + $.notification.permissionLevel()); // learnicusNotificationPermission
 $('.learnicusNotificationTest').click(function () {
 	// RANDOM START
