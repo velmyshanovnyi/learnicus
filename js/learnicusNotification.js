@@ -37,6 +37,7 @@ function showNotificationPreload () {
   // КОСТИЛЬ-1: ЕНД
 };
 
+
 // ########## NOTIFICATION-v3 ##########
 function learnicusNotificationV3() {
 	setInterval(function() {
@@ -44,15 +45,14 @@ function learnicusNotificationV3() {
 		learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // v3
 		localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // v3 кількість переглянутих слів (нове значення).
 
-		learnicusWatchWordCounterAutoUpdate();
+		//learnicusWatchWordCounterAutoUpdate();
 		
 		// RANDOM START
 		// использование Math.round() даст неравномерное распределение!
 		var randomIdMax = localStorage.ls_current_maxId;                            // v3
 		var randomId = Math.floor(Math.random() * randomIdMax);
 		localStorage.ls_current_randomId = randomId;                                // v3
-		console.log('RANDOM = '+ localStorage.ls_current_randomId);
-		console.log('RANDOM : '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //v3
+		console.log('RANDOM='+ localStorage.ls_current_randomId + '|'+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //v3
 		// RANDOM END
 		var options = {
 			tag: 'notificationReplaceId',
@@ -78,6 +78,7 @@ function learnicusNotificationV3() {
 		}, localStorage.ls_frequency * 1000);
 }; */
 // ########## NOTIFICATION-v3 END ##########
+
 
 // ########## NOTIFICATION TEST ##########
 // learnicusNotificationTest

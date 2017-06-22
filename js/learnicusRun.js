@@ -73,11 +73,11 @@ LoadFileHead('jquery.notification','js');
 LoadFileHead('learnicusOptions','js'); 
 LoadFileHead('learnicusGoogleAnalytics','js');
 LoadFileHead('learnicusJSON','js');
-LoadFileHead('dict.en2uk.number', 'DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents');
+LoadFileHead('dict.en2uk.v3', 'DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents');
+// LoadFileHead('dict.en2uk','DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents');
 // наступний рядок закоментований для того щоб можна було тестувати, потім або розкоментувати, або якщо буде нормально реалізований механізм автозавантеження - то й видалити взагалі його.
 // LoadFileHead('dict.en2uk.number2','DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHpKOXFrdUp2TE5peWhGbTJ5bXVJTmc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents');
 LoadFileHead('buzz','js'); // бібліотека для генерації звуку з мп3. можливо замінити її на більш сучасну чи спробувати грати самим бракузером - треба тестити!!!
 LoadFileHead('learnicusBackground','js'); 
 LoadFileHead('learnicusStyle','css');
 LoadFileHead('learnicusNotification','js');
-
