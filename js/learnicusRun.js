@@ -6,12 +6,9 @@ var ThisFileNameExt = 'js';            // тип цього файла.
 // var JsonEvents ="https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents"  // Learnicus.DB.en2uk/en2ua
 // var JsonEvents ="https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/basic?alt=json-in-script&callback=learnicusJsonEvents"  // Learnicus.DB.en2uk.number
 // localStorage.setItem('lsJsonEvents', JsonEvents); // ВИДАЛИТИ ПІСЛЯ v0.3.0
-//OLD:
-   //localStorage.learnicusDictionaryID = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodDZEYllPdHIzd3plV3JtTUkzYWMyMkE/od5/public/values?alt=json-in-script&callback=learnicusJsonEvents';
-//NEW1:
-   //localStorage.learnicusDictionaryID = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents';
-//NEW2:
-   //localStorage.learnicusDictionaryID = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents';
+//OLD:  //localStorage.learnicusDictionaryID = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodDZEYllPdHIzd3plV3JtTUkzYWMyMkE/od5/public/values?alt=json-in-script&callback=learnicusJsonEvents';
+//NEW1: //localStorage.learnicusDictionaryID = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents';
+//NEW2: //localStorage.learnicusDictionaryID = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents';
 
 // Виклик в <HEAD>+<BODY>
 function LoadFileHead(FileName,FileExt,DictSoundLang1,DictSoundLang2,DictIDurl){
@@ -43,9 +40,9 @@ function LoadFileHead(FileName,FileExt,DictSoundLang1,DictSoundLang2,DictIDurl){
     FileRef.setAttribute("charset", "UTF-8");
     FileRef.setAttribute("id", FileName);
     //FileRef.setAttribute("async", '');
-    localStorage.ls_DictionaryID          = DictIDurl;
-    localStorage.ls_SoundLang1            = DictSoundLang1;              // чи озвучувати оригінал
-    localStorage.ls_SoundLang2            = DictSoundLang2;              // чи озвучувати переклад
+    localStorage.ls_SoundLang1            = DictSoundLang1;				// мова-1 словника (якщо буде озвучка то береться цей параметр для папки)
+    localStorage.ls_SoundLang2            = DictSoundLang2;				// мова-2 словника (якщо буде озвучка то береться цей параметр для папки)
+    localStorage.ls_DictionaryID          = DictIDurl;					// лінк на словник
   }
   if (typeof FileRef!="undefined") {
     document.getElementsByTagName("head")[0].appendChild(FileRef);
@@ -73,7 +70,7 @@ LoadFileHead('jquery.notification','js');
 LoadFileHead('learnicusOptions','js'); 
 LoadFileHead('learnicusGoogleAnalytics','js');
 LoadFileHead('learnicusJSON','js');
-LoadFileHead('dict.en2uk.v3', 'DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents');
+LoadFileHead('dict.en2uk.v3', 'DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/1OxvHf086kuVZet2Dr0JY2bAIEsEo58lfE1KBD4TKVxU/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents');
 // LoadFileHead('dict.en2uk','DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents');
 // наступний рядок закоментований для того щоб можна було тестувати, потім або розкоментувати, або якщо буде нормально реалізований механізм автозавантеження - то й видалити взагалі його.
 // LoadFileHead('dict.en2uk.number2','DictUrl','en','uk','https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHpKOXFrdUp2TE5peWhGbTJ5bXVJTmc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents');

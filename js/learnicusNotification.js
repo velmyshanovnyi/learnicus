@@ -1,6 +1,45 @@
 var ThisFileName    = 'learnicusNotification';  // назва цього файла.
 var ThisFileNameExt = 'js';            // тип цього файла. 
 
+function preloadLocalStorageSetting () {
+  // Conditionally initialize the options.
+  if (!localStorage.learnicusInitialized) { // ЯКЩО ЛС порожній, то записуємо його наступними значеннями:
+    localStorage.learnicusInitialized           = true;
+    localStorage.isActivated                    = true;     // The display activation. // галочка "дозволити показ" 
+    localStorage.learnicusSoundActivated1       = false;    //  галочка "дозволити озучку" оригінал -- ще не прописана в коді
+    localStorage.learnicusSoundActivated2       = false;    //  галочка "дозволити озучку" переклад -- ще не прописана в коді
+	localStorage.learnicusDictionaryID          = 'https://spreadsheets.google.com/feeds/list/1OxvHf086kuVZet2Dr0JY2bAIEsEo58lfE1KBD4TKVxU/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents';
+	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents';
+	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodDZEYllPdHIzd3plV3JtTUkzYWMyMkE/od5/public/values?alt=json-in-script&callback=learnicusJsonEvents';
+	localStorage.learnicusSound1                = 'en';     // чи озвучувати оригінал
+	localStorage.learnicusSound2                = 'uk';     // чи озвучувати переклад
+    localStorage.ls_frequency                   = 30;       // The display frequency, in sec (за вмовчанням =30)
+    localStorage.ls_NotificationVisible         = 5;        // Час затримки показу нотіфікейшена (за вмовчанням =5)
+    localStorage.ls_current_WatchWordCounter    = '0';      // кількість переглянутих слів
+    console.log('озвучувати оригінал як '+ localStorage.learnicusSound1);
+    console.log('озвучувати переклад як '+ localStorage.learnicusSound2);
+    console.log('Стартую ВПЕРШЕ! Кількість переглянутих слів = '+ localStorage.ls_current_WatchWordCounter);
+  } else {
+  console.log('Кількість переглянутих слів = '+ localStorage.ls_current_WatchWordCounter);
+  };
+};
+
+function showNotificationPreload () {
+  // КОСТИЛЬ-1: щоб не вибивало при першому старті, поки не закешує ВЕСЬ словник
+  var intervalForRun = setInterval(function() {
+      if (localStorage.length <= 20) {              // якщо в ЛС менше наж стільки значень, то чекаємо
+      console.log('ЗАВАНТАЖУЮ СЛОВНИК!   Зачекайте!');
+      } else {
+      console.log('СЛОВНИК Є!:           Кількість слів у поточному словнику ='+ localStorage.ls_current_maxId +', елементів в LS ВСЬОГО='+ localStorage.length);
+      console.log('СТАРТУЮ ПОКАЗ!        ');
+      console.log('----------------------');
+      showNotificationRun (); // ЗАПУСКАЄМО функцію ПОКАЗУ СЛІВ!
+      clearInterval(intervalForRun);
+      };
+  }, 5000);
+  // КОСТИЛЬ-1: ЕНД
+};
+
 // рахує кількість переглянутих слів
 // learnicusWatchWordCounterAutoUpdate = function learnicusWatchWordCounterAutoUpdate() {
 function learnicusWatchWordCounterAutoUpdate() {
@@ -19,22 +58,6 @@ function learnicusRandom(){
 	//console.log('RANDOM = '+ localStorage.ls_current_randomId);
 	console.log('RANDOM = '+ localStorage.ls_current_randomId +' | '+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|rnd='+ localStorage.ls_current_randomId +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //v3
 	// RANDOM END
-};
-
-function showNotificationPreload () {
-  // КОСТИЛЬ-1: щоб не вибивало при першому старті, поки не закешує ВЕСЬ словник
-  var intervalForRun = setInterval(function() {
-      if (localStorage.length <= 20) {              // якщо в ЛС менше наж стільки значень, то чекаємо
-      console.log('ЗАВАНТАЖУЮ СЛОВНИК!   Зачекайте!');
-      } else {
-      console.log('СЛОВНИК Є!:           Кількість слів у поточному словнику ='+ localStorage.ls_current_maxId +', елементів в LS ВСЬОГО='+ localStorage.length);
-      console.log('СТАРТУЮ ПОКАЗ!        ');
-      console.log('----------------------');
-      showNotificationRun (); // ЗАПУСКАЄМО функцію ПОКАЗУ СЛІВ!
-      clearInterval(intervalForRun);
-      };
-  }, 5000);
-  // КОСТИЛЬ-1: ЕНД
 };
 
 
@@ -182,30 +205,6 @@ function showNotificationRun (){
     }, 1000); // 1min = 60000, 1sec = 1000
   };
 };
-
-function preloadLocalStorageSetting () {
-  // Conditionally initialize the options.
-  if (!localStorage.learnicusInitialized) { // ЯКЩО ЛС порожній, то записуємо його наступними значеннями:
-    localStorage.learnicusInitialized           = true;
-    localStorage.isActivated                    = true;     // The display activation. // галочка "дозволити показ" 
-    localStorage.learnicusSoundActivated1       = false;    //  галочка "дозволити озучку" оригінал -- ще не прописана в коді
-    localStorage.learnicusSoundActivated2       = false;    //  галочка "дозволити озучку" переклад -- ще не прописана в коді
-	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodHp2aVEzWV81VnQyRGpnTkN0WDhQUFE/od7/public/basic?alt=json-in-script&callback=learnicusJsonEvents';
-	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodDZEYllPdHIzd3plV3JtTUkzYWMyMkE/od5/public/values?alt=json-in-script&callback=learnicusJsonEvents';
-	//localStorage.learnicusDictionaryID        = 'https://spreadsheets.google.com/feeds/list/0As9SVzApMBjodEhaUmFFRENXYUlKX3FOZk9TejV6VHc/od6/public/values?alt=json-in-script&callback=learnicusJsonEvents';
-	localStorage.learnicusSound1                = 'en';     // чи озвучувати оригінал
-	localStorage.learnicusSound2                = 'uk';     // чи озвучувати переклад
-    localStorage.ls_frequency                   = 30;       // The display frequency, in sec (за вмовчанням =30)
-    localStorage.ls_NotificationVisible         = 5;        // Час затримки показу нотіфікейшена (за вмовчанням =5)
-    localStorage.ls_current_WatchWordCounter    = '0';      // кількість переглянутих слів
-    console.log('озвучувати оригінал як '+ localStorage.learnicusSound1);
-    console.log('озвучувати переклад як '+ localStorage.learnicusSound2);
-    console.log('Стартую ВПЕРШЕ! Кількість переглянутих слів = '+ localStorage.ls_current_WatchWordCounter);
-  } else {
-  console.log('Кількість переглянутих слів = '+ localStorage.ls_current_WatchWordCounter);
-  };
-};
-
 
 
 preloadLocalStorageSetting ();
