@@ -38,25 +38,15 @@ chrome.extension.onMessage.addListener(
 // ########## BUZZ CHECK ##########
 // API --  http://buzz.jaysalvat.com/documentation
 console.log('BUZZ|Check browser');  // Check if the HTML5 audio tag is supported by the browser.
-if (!buzz.isSupported()) {
-  alert("Your browser is too old, time to update!");
-}
+if (!buzz.isSupported()) {alert("Your browser is too old, time to update!");}
 console.log('BUZZ|Check OGG Format'); // Check if the OGG audio format is supported by the browser.
-if (!buzz.isOGGSupported()) {
-  alert("Your browser doesn't support OGG Format.");
-}
+if (!buzz.isOGGSupported()) {alert("Your browser doesn't support OGG Format.");}
 console.log('BUZZ|Check WAV Format'); // Check if the WAV audio format is supported by the browser.
-if (!buzz.isWAVSupported()) {
-  alert("Your browser doesn't support WAV Format.");
-}
+if (!buzz.isWAVSupported()) {alert("Your browser doesn't support WAV Format.");}
 console.log('BUZZ|Check MP3 Format'); // Check if the MP3 audio format is supported by the browser.
-if (!buzz.isMP3Supported()) {
-  alert("Your browser doesn't support MP3 Format.");
-}
+if (!buzz.isMP3Supported()) {alert("Your browser doesn't support MP3 Format.");}
 console.log('BUZZ|Check AAC Format'); // Check if the AAC audio format is supported by the browser.
-if (!buzz.isAACSupported()) {
-  alert("Your browser doesn't support AAC Format.");
-}
+if (!buzz.isAACSupported()) {alert("Your browser doesn't support AAC Format.");}
 // ########## BUZZ CHECK END ##########
 
 

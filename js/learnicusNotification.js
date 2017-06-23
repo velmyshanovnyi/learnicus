@@ -24,7 +24,7 @@ function preloadLocalStorageSetting () {
   };
 };
 
-function showNotificationPreload () {
+function showNotificationPreload_56565656556 () {
   // КОСТИЛЬ-1: щоб не вибивало при першому старті, поки не закешує ВЕСЬ словник
   var intervalForRun = setInterval(function() {
       if (localStorage.length <= 20) {              // якщо в ЛС менше наж стільки значень, то чекаємо
@@ -49,7 +49,7 @@ function learnicusWatchWordCounterAutoUpdate() {
 		}, localStorage.ls_frequency * 1000);
 };
 
-function learnicusRandom(){
+function learnicusRandom_989989898989(){
 	// RANDOM START
 	// использование Math.round() даст неравномерное распределение!
 	var randomIdMax = localStorage.ls_current_maxId;                            // v3
@@ -61,45 +61,88 @@ function learnicusRandom(){
 };
 
 
-// ########## NOTIFICATION-v3 ##########
-function learnicusNotificationV3() {
-	setInterval(function() {
-		var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     // присвоїли змінній значення з ЛС
-		learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // v3
-		localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // v3 кількість переглянутих слів (нове значення).
 
-		//learnicusWatchWordCounterAutoUpdate();
-		
-		// RANDOM START
-		// использование Math.round() даст неравномерное распределение!
-		var randomIdMax = localStorage.ls_current_maxId;                            // v3
-		var randomId = Math.floor(Math.random() * randomIdMax);
-		localStorage.ls_current_randomId = randomId;                                // v3
-		console.log('RANDOM='+ localStorage.ls_current_randomId + '|'+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //v3
-		// RANDOM END
-		var options = {
-			tag: 'notificationReplaceId',
-			iconUrl: chrome.extension.getURL('icons/icon32.png'),
-			title:    localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1word_'+ randomId) +' ['+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1trans_'+ randomId) +']', // 0.2.30 заголовок (СЛОВО)
-			// body:     localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +' ['+ Math.random() +']',
-			body:     localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +'',
-			autoclose: true,
-			timeout: (localStorage.ls_NotificationVisible*1000), // close notification in ** sec // learnicusNotificationTimeout // функція вимикання по таймауту. вже в налаштуваннях!
-			onclick: function () {
-				console.log('learnicusNotificationTest');
-			}
-		};
-		// $.notification(options)
-		var learnicusNotification1 = $.notification(options);
-	}, localStorage.ls_frequency * 1000);
+function showNotificationRun32323 (){
+  // Test for notification support.
+  //if (window.webkitNotifications){
+    // While activated, show notifications at the display frequency.
+    if (JSON.parse(localStorage.isActivated)) { learnicusNotificationV3(); }
+    var interval = 0; // The display interval, in minutes.
+    setInterval(function() {
+      interval++;
+      if (localStorage.length == 0){
+      console.log('---------- АВТОМАТИЧНИЙ РЕСТАРТ ----------');
+      // КОСТИЛЬ-2: коли ЛС порожній з якоїсь причини, робимо рестарт!
+      document.write('<scr'+'ipt src="'+ chrome.extension.getURL('js/learnicusRun.js') +'" async type="text/javascript" ></scr'+'ipt>');
+      // КОСТИЛЬ-2: ЕНД
+      } else if ( 
+        // УВАГА: тут видаватиме помилку тільки якщо порожній ЛС
+        JSON.parse(localStorage.isActivated) && localStorage.ls_frequency <= interval
+      ) {
+        learnicusNotificationV3();
+        interval = 0;
+      }
+    }, 1000); // 1min = 60000, 1sec = 1000
+//  };
 };
 
-/* {
-		setInterval(function() {
-			console.log('learnicusNotificationV3 = learnicusNotificationV3 = learnicusNotificationV3');
-			console.log('learnicusNotificationV3 = learnicusNotificationV3 = learnicusNotificationV3');
-		}, localStorage.ls_frequency * 1000);
-}; */
+
+// ########## NOTIFICATION-v3 ##########
+function learnicusNotificationV3() {
+	
+	setInterval(function() {
+		// КОСТИЛЬ-1: коли ЛС порожній з якоїсь причини, робимо рестарт!
+			if (localStorage.length == 0){
+				console.log('---------- АВТОМАТИЧНИЙ РЕСТАРТ ----------');
+				document.write('<scr'+'ipt src="'+ chrome.extension.getURL('js/learnicusRun.js') +'" async type="text/javascript" ></scr'+'ipt>');
+				// КОСТИЛЬ-2: щоб не вибивало при першому старті, поки не закешує ВЕСЬ словник
+					setInterval(function() {
+					if (localStorage.length <= 20) {              // якщо в ЛС менше наж стільки значень, то чекаємо
+						console.log('ЗАВАНТАЖУЮ СЛОВНИК!   Зачекайте!');
+						} else {
+						console.log('СЛОВНИК Є!:           Кількість слів у поточному словнику ='+ localStorage.ls_current_maxId +', елементів в LS ВСЬОГО='+ localStorage.length);
+						console.log('СТАРТУЮ ПОКАЗ!        ');
+						console.log('----------------------');
+						};
+					}, 5000);
+				// КОСТИЛЬ-2: ЕНД
+			};
+		// КОСТИЛЬ-1: ЕНД
+
+		if (JSON.parse(localStorage.isActivated)) {
+			var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     // присвоїли змінній значення з ЛС
+			learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // v3
+			localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // v3 кількість переглянутих слів (нове значення).
+
+			//learnicusWatchWordCounterAutoUpdate();
+			
+			// RANDOM START
+			// использование Math.round() даст неравномерное распределение!
+			var randomIdMax = localStorage.ls_current_maxId;                            // v3
+			var randomId = Math.floor(Math.random() * randomIdMax);
+			localStorage.ls_current_randomId = randomId;                                // v3
+			console.log('RANDOM='+ localStorage.ls_current_randomId + '|'+ localStorage.ls_current_WatchWordCounter +'|'+ localStorage.ls_SoundLang1 +'-'+ localStorage.ls_SoundLang2 +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1word_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang1trans_'+ randomId) +'|'+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle+'_lang2word_'+ randomId) +''); //v3
+			// RANDOM END
+
+			var options = {
+				tag: 'learnicus', // 'notificationReplaceId'
+				iconUrl: chrome.extension.getURL('icons/icon32.png'),
+				title:    localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1word_'+ randomId) +' ['+ localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang1trans_'+ randomId) +']', // 0.2.30 заголовок (СЛОВО)
+				// body:     localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +' ['+ Math.random() +']',
+				body:     localStorage.getItem('ls_'+localStorage.ls_current_dictTitle +'_lang2word_'+ randomId) +'',
+				autoclose: true,
+				timeout: (localStorage.ls_NotificationVisible*1000), // close notification in ** sec // learnicusNotificationTimeout // функція вимикання по таймауту. вже в налаштуваннях!
+				onclick: function () {
+					console.log('learnicusNotification click');
+				}
+			};
+			$.notification(options)
+			//var learnicusNotification1 = $.notification(options);
+		} else {
+		console.log('ГАЛОЧКА "показувати" ЗНЯТА----------------------');
+		};
+	}, localStorage.ls_frequency * 1000);
+};
 // ########## NOTIFICATION-v3 END ##########
 
 
@@ -156,13 +199,6 @@ function learnicusNotification2 (){
     // var learnicusNotification = $.notification(options);
 };
 
-function learnicusNotificationRun(){
-	setTimeout (function (){
-		console.log('RANDOM = '+ localStorage.ls_current_randomId +'-----------------------------');
-		// learnicusRandom();
-		// learnicusNotification();
-	}, localStorage.ls_frequency*1000); // learnicusFrequency
-};
 
 // ########## NOTIFICATION - OLD - START ##########
 /*
@@ -182,31 +218,8 @@ var learnicusWatchWordCounter = localStorage.ls_current_WatchWordCounter;     //
 learnicusWatchWordCounter = learnicusWatchWordCounter++;                      // 0.2.31
 localStorage.ls_current_WatchWordCounter = learnicusWatchWordCounter += 1;    // 0.2.31 кількість переглянутих слів (нове значення).
 
-function showNotificationRun (){
-  // Test for notification support.
-  if (window.webkitNotifications){
-    // While activated, show notifications at the display frequency.
-    if (JSON.parse(localStorage.isActivated)) { showNotification(); }
-    var interval = 0; // The display interval, in minutes.
-    setInterval(function() {
-      interval++;
-      if (localStorage.length == 0){
-      console.log('---------- АВТОМАТИЧНИЙ РЕСТАРТ ----------');
-      // КОСТИЛЬ-2: коли ЛС порожній з якоїсь причини, робимо рестарт!
-      document.write('<scr'+'ipt src="'+ chrome.extension.getURL('js/learnicusRun.js') +'" async type="text/javascript" ></scr'+'ipt>');
-      // КОСТИЛЬ-2: ЕНД
-      } else if ( 
-        // УВАГА: тут видаватиме помилку тільки якщо порожній ЛС
-        JSON.parse(localStorage.isActivated) && localStorage.ls_frequency <= interval
-      ) {
-        showNotification();
-        interval = 0;
-      }
-    }, 1000); // 1min = 60000, 1sec = 1000
-  };
-};
-
 
 preloadLocalStorageSetting ();
-showNotificationPreload ();
+//showNotificationPreload ();
+//showNotificationRun ();
 learnicusNotificationV3 (); // v3
